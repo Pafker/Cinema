@@ -79,11 +79,11 @@ class Punkt
 		//Pobieranie odleglosci od osi obrotu z klawiatury
 		//Scanner input = new Scanner (System.in);
 		//System.out.println("Podaj odleglosc od osi obrotu"); 
-		//int x=input.nextInt(); 
+		//int x=input.nextInt(); loooool co tu sie odjaniepawla
 		//System.out.println("Odleglosc od osi obrotu to "+x);
-		System.out.println("Masa punktu wynosi "+getMass()+" a promien "+getPromien()+" i jej g≥Ûwny moment bezw≥adnoúci wynosi "+moment());
+		System.out.println("Masa punktu wynosi "+getMass()+" a promien "+getPromien()+" i jej g≈Ç√≥wny moment bezw≈Çadno≈õci wynosi "+moment());
 		System.out.println("Odleglosc od osi obrotu to "+getOdleglosc());
-		System.out.println("Moment bezw≥adnoúci punktu wzglÍdem nowej osi obrotu wynosi "+steiner(getOdleglosc()));
+		System.out.println("Moment bezw≈Çadno≈õci punktu wzglƒôdem nowej osi obrotu wynosi "+steiner(getOdleglosc()));
 		System.out.println();
 	}
 	
