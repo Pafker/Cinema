@@ -6,23 +6,23 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JTextField;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 
 public class MojeOkno extends JFrame implements ActionListener
 {
 
-	JButton bDalej; 
-	JButton bWstecz;
-	JLabel lPowitanie;
-	JLabel lOsobowe;
-	JLabel lSiemanko;
-	JLabel lOsoba;
-	JTextField tOsobowe;
-	JComboBox comboFilm;
-	JComboBox comboGodzina;
+	private JButton bDalej; 
+	private JLabel lPowitanie;
+	private static JComboBox comboFilm;
+	private static JComboBox comboGodzina;
+	private JCheckBox m1, m2, m3, m4, m5, m6, m7, m8, m9, m10, m11, m12, m13, m14, m15, m16, m17, m18, m19, m20;
+	static Bilet bilet = new Bilet();
 	
 	public MojeOkno()
 	{
@@ -37,10 +37,7 @@ public class MojeOkno extends JFrame implements ActionListener
 		add(bDalej);
 		bDalej.addActionListener(this);
 		
-		bWstecz = new JButton("Powitanie");
-		bWstecz.setBounds(60, 420, 80, 30);
-		add(bWstecz);
-		bWstecz.addActionListener(this);
+		
 		
 		lPowitanie = new JLabel("System rezerwacji miejsc w kinie");
 		lPowitanie.setBounds(20, 10, 250, 30);
@@ -48,22 +45,7 @@ public class MojeOkno extends JFrame implements ActionListener
 		lPowitanie.setFont(new Font("SansSerif",Font.BOLD,16));
 		add(lPowitanie);
 		
-		lOsobowe = new JLabel("Podaj swoje imie i nazwisko");
-		lOsobowe.setBounds(20, 50, 250, 30);
-		add(lOsobowe);
-		
-		tOsobowe = new JTextField("");;
-		tOsobowe.setBounds(20, 90, 250, 30);
-		add(tOsobowe);
-		
-		lSiemanko = new JLabel("Dzieñ dobry ");
-		lSiemanko.setBounds(20, 120, 250, 30);
-		add(lSiemanko);
-		
-		lOsoba = new JLabel("");;
-		lOsoba.setBounds(100, 120, 100, 30);
-		add(lOsoba);
-		
+			
 	
 		Film filmik = new Film();
 		
@@ -82,20 +64,29 @@ public class MojeOkno extends JFrame implements ActionListener
 		comboGodzina.addItem(filmik.getGodzinaSeansu(i));
 		}
 		add(comboGodzina);
-				
+		
+		
+		
+		
 				
 	}
 	
 	
 	
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws FileNotFoundException {
 		
 		
 		MojeOkno okienko = new MojeOkno();
 		
 		okienko.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		okienko.setVisible(true);
+		
+		//Pobiera zla dana
+		PrintWriter zapis = new PrintWriter("Bilet.txt");
+		zapis.println("Film " + drukujFilm(1));
+		zapis.println("Godzina "+comboGodzina.getSelectedItem());
+		zapis.close();
 		
 
 }
@@ -107,15 +98,34 @@ public class MojeOkno extends JFrame implements ActionListener
 		Object zrodlo = e.getSource();
 		if (zrodlo==bDalej)
 		{
-			System.out.println("Lecim");
+			System.out.println("Lecim"+bilet.getDane(1));
 			dispose();
-			MojeOknoDwa okienko2 = new MojeOknoDwa();
-			
-		}
-		else if (zrodlo==bWstecz)
-		{
-			String pseudonim=tOsobowe.getText();
-			lOsoba.setText(pseudonim);
+			pobranieFilmu(comboFilm.getSelectedIndex());
+			PrintWriter zapis;
+			try {
+				zapis = new PrintWriter("Bilet.txt");
+				zapis.println("Film " + drukujFilm(1));
+				zapis.println("Godzina "+comboGodzina.getSelectedItem());
+				zapis.close();
+			} catch (FileNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		
+			new MojeOknoDwa();			
 		}
 	}
-}
+
+	public void pobranieFilmu(int k){
+		bilet.setDane((String) comboFilm.getSelectedItem(), 1);
+	} 
+	
+	public static String drukujFilm(int k){
+		return bilet.getDane(k);
+		
+	}
+	
+	}
+
+
+
