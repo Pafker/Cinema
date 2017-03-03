@@ -8,8 +8,7 @@ działania aplikacji tworzy sie plik Bilet.txt, w którym zawarte są wybrane da
 Planuję wprowadzenie bazy danych co uniemożliwiałoby kupno kilka razy tego
 samego miejsca i możliwości płatności online.
 
-############################3
-Akademia Górniczo-Hutnicza im. Stanisława Staszica w Krakowie
-Wydział Inżynierii Mechanicznej i Robotyki
+Akademia Górniczo-Hutnicza im. Stanisława Staszica w Krakowie           
+Wydział Inżynierii Mechanicznej i Robotyki        
 Patryk Pawlos
 
